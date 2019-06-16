@@ -1,14 +1,28 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import ReactDOM from 'react-dom';
-import Chat from './components/Chat';
+import { createStore, compose, applyMiddleware } from 'redux';
+import { Provider } from 'react-redux';
+import thunk from 'redux-thunk';
+import 'antd/dist/antd.css';
+import reducer from './store/reducers/auth';
+import App from './components/App';
 import './index.css';
-import WebSocketInstance from './utils/websocket';
 
-const App = () => {
-  useEffect(() => {
-    WebSocketInstance.connect();
-  }, []);
-  return <Chat />;
-};
+const composeEnhances = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
-ReactDOM.render(<App />, document.getElementById('root'));
+const store = createStore(reducer, composeEnhances(applyMiddleware(thunk)));
+
+const app = (
+  <Provider store={store}>
+    <App />
+  </Provider>
+);
+
+// const App = () => {
+//   useEffect(() => {
+//     WebSocketInstance.connect();
+//   }, []);
+//   return <Chat />;
+// };
+
+ReactDOM.render(app, document.getElementById('root'));
