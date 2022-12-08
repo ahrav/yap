@@ -24,7 +24,7 @@ six>=1.12.0,<1.13.0
 Twisted>=19.2.1,<19.3.0
 txaio>=18.8.1,<18.9.0
 zope.interface>=4.6.0,<4.7.0
-certifi==2018.10.15
+certifi==2022.12.7
 chardet==3.0.4
 defusedxml==0.5.0
 django-allauth==0.38.0
